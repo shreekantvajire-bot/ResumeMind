@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | ResumeMind AI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+
+<style>
+.contact-page{
+    padding:140px 8% 100px;
+    min-height:100vh;
+    max-width:1400px;
+    margin:auto;
+}
+
+.contact-header{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.contact-header h1{
+    font-size:clamp(2.5rem, 5vw, 4.5rem);
+    margin-bottom:15px;
+}
+
+.contact-header p{
+    max-width:900px;
+    margin:auto;
+    color:#cbd5e1;
+    line-height:1.9;
+    font-size:18px;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.95fr;
+    gap:35px;
+    align-items:start;
+}
+
+.contact-card{
+    background:rgba(15,23,42,0.72);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:32px;
+    padding:35px;
+    backdrop-filter:blur(18px);
+    box-shadow:0 0 45px rgba(59,130,246,0.12);
+}
+
+.info-box{
+    margin-bottom:25px;
+}
+
+.info-box h2{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.info-box p{
+    color:#cbd5e1;
+    line-height:1.8;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:10px;
+    color:#e2e8f0;
+    font-weight:500;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    padding:16px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    color:white;
+    font-size:15px;
+    outline:none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 20px rgba(59,130,246,0.22);
+}
+
+.form-group textarea{
+    min-height:160px;
+    resize:vertical;
+}
+
+.contact-btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:18px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+    color:white;
+    background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+    transition:0.4s;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+}
+
+.contact-btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 0 35px rgba(59,130,246,0.35);
+}
+
+.contact-items{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.contact-item{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:18px;
+    border-radius:22px;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.06);
+    transition:0.4s;
+}
+
+.contact-item:hover{
+    transform:translateY(-4px);
+    border-color:#06b6d4;
+}
+
+.contact-icon{
+    width:58px;
+    height:58px;
+    border-radius:16px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+    box-shadow:0 8px 20px rgba(59,130,246,0.25);
+    flex-shrink:0;
+}
+
+.contact-text h3{
+    margin-bottom:5px;
+    font-size:18px;
+}
+
+.contact-text p,
+.contact-text a{
+    color:#cbd5e1;
+    text-decoration:none;
+    word-break:break-word;
+}
+
+.social-box{
+    margin-top:30px;
+}
+
+.social-box h3{
+    margin-bottom:15px;
+    font-size:20px;
+}
+
+.social-links{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.social-links a{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    font-size:1.1rem;
+    color:white;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    transition:0.4s;
+}
+
+.social-links a:hover{
+    transform:translateY(-5px);
+    background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+    box-shadow:0 0 25px rgba(59,130,246,0.3);
+}
+
+.map-card{
+    margin-top:24px;
+    border-radius:24px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.04);
+}
+
+.map-header{
+    padding:18px 20px 0;
+}
+
+.map-header h3{
+    margin-bottom:8px;
+    font-size:20px;
+}
+
+.map-header p{
+    color:#cbd5e1;
+    line-height:1.8;
+    margin-bottom:16px;
+}
+
+.map-frame{
+    width:100%;
+    height:320px;
+    border:0;
+    display:block;
+}
+
+@media(max-width:992px){
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:700px){
+    .contact-page{
+        padding:120px 5% 80px;
+    }
+
+    .contact-card{
+        padding:24px;
+    }
+
+    .contact-header h1{
+        font-size:2.6rem;
+    }
+
+    .info-box h2{
+        font-size:26px;
+    }
+
+    .map-frame{
+        height:260px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    <div class="glow glow3"></div>
+    <div class="particles"></div>
+</div>
+
+<header id="navbar">
+      <div class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-layer-group" style="color: var(--accent-cyan);"></i>
+                <span>ResumeMind AI</span>
+            </div>
+
+        <div class="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="builder.html">Builder</a>
+            <a href="templates.html">Templates</a>
+            
+            <a href="dashboard.html">Dashboard</a>
+            <a href="contact.html" style="color:#ffffff;font-weight:600;">Contact</a>
+            
+        </div>
+    </div>
+</header>
+
+<section class="contact-page">
+
+    <div class="contact-header fade-in">
+        <h1>Contact <span class="gradient-text">Us</span></h1>
+        <p>
+            Need help with AI resume building, premium templates, or career guidance?
+            Send a message and it will open WhatsApp with all your details ready to go.
+        </p>
+    </div>
+
+    <div class="contact-grid">
+
+        <div class="contact-card slide-right">
+            <div class="info-box">
+                <h2>Send a Message</h2>
+                <p>Fill the form below. When you press send, your details will open in WhatsApp.</p>
+            </div>
+
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="contact-name">Full Name</label>
+                    <input type="text" id="contact-name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-email">Email Address</label>
+                    <input type="email" id="contact-email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-subject">Subject</label>
+                    <input type="text" id="contact-subject" placeholder="What is this regarding?" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-message">Message</label>
+                    <textarea id="contact-message" placeholder="Write your message here..." required></textarea>
+                </div>
+
+                <button type="submit" class="contact-btn">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    Send on WhatsApp
+                </button>
+            </form>
+        </div>
+
+        <div class="contact-card slide-up">
+            <div class="info-box">
+                <h2>Get In Touch</h2>
+                <p>Reach out to our support team directly.</p>
+            </div>
+
+            <div class="contact-items">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Email</h3>
+                        <a href="mailto:shreekantvajire@gmail.com">shreekantvajire@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>WhatsApp</h3>
+                        <a href="https://wa.me/919022462929" target="_blank" rel="noopener">+91 90224 62929</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h3>Location</h3>
+                        <p>Maharashtra, Latur - 413512</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-box">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="map-card">
+                <div class="map-header">
+                    <h3>Our Location</h3>
+                    <p>Maharashtra, Latur - 413512</p>
+                </div>
+
+                <iframe
+                    class="map-frame"
+                    src="https://www.google.com/maps?q=Latur%2C%20Maharashtra%20413512&output=embed"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Latur Map">
+                </iframe>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 ResumeMind AI. All rights reserved.</p>
+
+    <div class="footer-social">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+    </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-form");
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("contact-name").value.trim();
+        const email = document.getElementById("contact-email").value.trim();
+        const subject = document.getElementById("contact-subject").value.trim();
+        const message = document.getElementById("contact-message").value.trim();
+
+        const whatsappNumber = "919022462929";
+
+        const whatsappMessage = `
+Hello ResumeMind AI,
+
+Name: ${name}
+Email: ${email}
+Subject: ${subject}
+
+Message:
+${message}
+        `.trim();
+
+        const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+        window.open(url, "_blank", "noopener,noreferrer");
+    });
+});
+</script>
+<div class="background">
+
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    <div class="glow glow3"></div>
+
+    <div class="particles">
+        <span style="left:10%; animation-duration:10s;"></span>
+        <span style="left:25%; animation-duration:15s;"></span>
+        <span style="left:40%; animation-duration:12s;"></span>
+        <span style="left:60%; animation-duration:18s;"></span>
+        <span style="left:75%; animation-duration:14s;"></span>
+        <span style="left:90%; animation-duration:11s;"></span>
+    </div>
+
+</div>>
+
+</body>
+</html>

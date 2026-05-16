@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Resume Templates | ResumeMind AI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+
+<style>
+.templates-page{
+    padding:140px 5% 90px;
+    min-height:100vh;
+    max-width:1600px;
+    margin:auto;
+}
+
+.templates-header{
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.templates-header h1{
+    font-size:clamp(2.6rem, 5vw, 4.6rem);
+    margin-bottom:14px;
+    line-height:1.08;
+}
+
+.templates-header p{
+    max-width:900px;
+    margin:auto;
+    color:#cbd5e1;
+    line-height:1.9;
+    font-size:1.05rem;
+}
+
+.top-section{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:18px;
+    margin-bottom:28px;
+}
+
+.top-section h2{
+    font-size:1.55rem;
+    color:#f8fafc;
+}
+
+.filters{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.filter-btn{
+    padding:10px 20px;
+    border:none;
+    border-radius:999px;
+    cursor:pointer;
+    background:rgba(255,255,255,0.06);
+    color:#e2e8f0;
+    border:1px solid rgba(255,255,255,0.08);
+    font-weight:600;
+    transition:0.35s ease;
+    backdrop-filter:blur(14px);
+}
+
+.filter-btn:hover,
+.filter-btn.active{
+    background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+    box-shadow:0 12px 28px rgba(59,130,246,0.25);
+    transform:translateY(-3px);
+}
+
+.template-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+    gap:30px;
+}
+
+.template-card{
+    background:rgba(15,23,42,0.72);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:30px;
+    overflow:hidden;
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    box-shadow:0 20px 50px rgba(0,0,0,0.22);
+    transition:0.45s ease;
+}
+
+.template-card:hover{
+    transform:translateY(-10px);
+    border-color:rgba(6,182,212,0.45);
+    box-shadow:0 24px 60px rgba(0,0,0,0.35), 0 0 30px rgba(6,182,212,0.15);
+}
+
+.template-image{
+    height:280px;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(139,92,246,0.16), transparent 40%),
+        rgba(0,0,0,0.22);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.resume-mockup{
+    width:185px;
+    height:238px;
+    border-radius:14px;
+    background:white;
+    padding:15px;
+    box-shadow:0 16px 40px rgba(0,0,0,0.4);
+    transition:0.45s ease;
+    will-change:transform;
+}
+
+.template-card:hover .resume-mockup{
+    transform:scale(1.05) rotate(0deg) !important;
+}
+
+.mockup-header{
+    height:36px;
+    border-radius:8px;
+    margin-bottom:14px;
+    background:linear-gradient(90deg,#3b82f6,#8b5cf6);
+}
+
+.mockup-line{
+    height:8px;
+    border-radius:10px;
+    margin-bottom:10px;
+    background:#e5e7eb;
+}
+
+.mockup-line.small{ width:60%; }
+.mockup-line.medium{ width:80%; }
+
+.badge{
+    position:absolute;
+    top:18px;
+    right:18px;
+    padding:8px 14px;
+    border-radius:999px;
+    font-size:0.74rem;
+    font-weight:800;
+    letter-spacing:0.8px;
+    z-index:2;
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+.badge-pro{ background:linear-gradient(135deg,#f59e0b,#ef4444); color:white; }
+.badge-new{ background:linear-gradient(135deg,#10b981,#059669); color:white; }
+.badge-hot{ background:linear-gradient(135deg,#ec4899,#8b5cf6); color:white; }
+
+.template-content{
+    padding:28px;
+}
+
+.template-content h2{
+    margin-bottom:10px;
+    font-size:1.5rem;
+    color:#f8fafc;
+}
+
+.template-content p{
+    color:#cbd5e1;
+    line-height:1.75;
+    margin-bottom:18px;
+    font-size:0.95rem;
+}
+
+.template-features{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:22px;
+}
+
+.template-features span{
+    padding:6px 14px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    font-size:0.8rem;
+    color:#06b6d4;
+}
+
+.template-btn{
+    display:inline-flex;
+    width:100%;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    text-align:center;
+    padding:14px 24px;
+    border-radius:16px;
+    text-decoration:none;
+    color:white;
+    font-weight:700;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.08);
+    transition:0.35s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.template-card:hover .template-btn{
+    background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+    border-color:transparent;
+    box-shadow:0 12px 24px rgba(59,130,246,0.22);
+    transform:translateY(-2px);
+}
+
+.template-btn::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    left:-120%;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition:0.65s ease;
+}
+
+.template-btn:hover::before{
+    left:120%;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .templates-page{
+        padding:120px 5% 70px;
+    }
+
+    .templates-header h1{
+        font-size:2.5rem;
+    }
+
+    .top-section{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .filters{
+        width:100%;
+    }
+
+    .filter-btn{
+        flex:1;
+        text-align:center;
+    }
+
+    .template-grid{
+        grid-template-columns:1fr;
+    }
+
+    .template-image{
+        height:260px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    <div class="glow glow3"></div>
+    <div class="particles"></div>
+</div>
+
+<header id="navbar">
+        <div class="navbar">
+            <div class="logo">
+                <i class="fa-solid fa-layer-group" style="color: var(--accent-cyan);"></i>
+                <span>ResumeMind AI</span>
+            </div>
+
+        <div class="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="builder.html">Builder</a>
+            <a href="templates.html" style="color:#ffffff;font-weight:700;">Templates</a>
+            
+            <a href="dashboard.html">Dashboard</a>
+            <a href="contact.html">Contact</a>
+           
+        </div>
+    </div>
+</header>
+
+<section class="templates-page">
+
+    <div class="templates-header fade-in">
+        <h1>Resume <span class="gradient-text">Templates</span></h1>
+        <p>
+            Choose from futuristic, professional and ATS-friendly resume templates powered by AI design systems.
+            Pick one, open the builder, and download your resume in the same style.
+        </p>
+    </div>
+
+    <div class="top-section slide-up">
+        <h2>🔥 Premium Resume Collection</h2>
+
+        <div class="filters">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">ATS Optimized</button>
+            <button class="filter-btn">Creative</button>
+            <button class="filter-btn">Corporate</button>
+            <button class="filter-btn">Minimal</button>
+        </div>
+    </div>
+
+    <div class="template-grid">
+
+        <div class="template-card slide-up" style="animation-delay:0.1s;">
+            <div class="template-image">
+                <div class="badge badge-pro">PRO</div>
+                <div class="resume-mockup" style="transform:rotate(-3deg);">
+                    <div class="mockup-header" style="background:linear-gradient(90deg,#1e293b,#334155);"></div>
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line small"></div>
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line medium"></div>
+                    <div class="mockup-line small"></div>
+                    <div class="mockup-line"></div>
+                </div>
+            </div>
+            <div class="template-content">
+                <h2>Modern ATS</h2>
+                <p>Professional ATS-friendly template strictly optimized for recruiter systems and corporate roles.</p>
+                <div class="template-features">
+                    <span>ATS Ready</span>
+                    <span>Modern</span>
+                    <span>Corporate</span>
+                </div>
+                <a href="builder.html?template=modern-ats" class="template-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Use Template
+                </a>
+            </div>
+        </div>
+
+        <div class="template-card slide-up" style="animation-delay:0.2s;">
+            <div class="template-image">
+                <div class="resume-mockup" style="transform:rotate(3deg);">
+                    <div class="mockup-header" style="background:linear-gradient(90deg,#06b6d4,#3b82f6);"></div>
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line medium"></div>
+                    <div class="mockup-line small"></div>
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line"></div>
+                </div>
+            </div>
+            <div class="template-content">
+                <h2>Creative Neon</h2>
+                <p>Futuristic creative resume template with glowing modern UI aesthetics and eye-catching visual style.</p>
+                <div class="template-features">
+                    <span>Creative</span>
+                    <span>Futuristic</span>
+                    <span>UI/UX</span>
+                </div>
+                <a href="builder.html?template=creative-neon" class="template-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Use Template
+                </a>
+            </div>
+        </div>
+
+        <div class="template-card slide-up" style="animation-delay:0.3s;">
+            <div class="template-image">
+                <div class="badge badge-new">NEW</div>
+                <div class="resume-mockup" style="transform:rotate(-2deg);">
+                    <div class="mockup-header" style="background:linear-gradient(90deg,#8b5cf6,#ec4899);"></div>
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line small"></div>
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line medium"></div>
+                    <div class="mockup-line"></div>
+                </div>
+            </div>
+            <div class="template-content">
+                <h2>Minimal Pro</h2>
+                <p>Clean minimal resume template designed for students, freshers and developers who like simplicity.</p>
+                <div class="template-features">
+                    <span>Minimal</span>
+                    <span>Elegant</span>
+                    <span>Simple</span>
+                </div>
+                <a href="builder.html?template=minimal-pro" class="template-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Use Template
+                </a>
+            </div>
+        </div>
+
+        <div class="template-card slide-up" style="animation-delay:0.4s;">
+            <div class="template-image">
+                <div class="resume-mockup" style="transform:rotate(4deg);">
+                    <div class="mockup-header" style="background:linear-gradient(90deg,#f59e0b,#ef4444);"></div>
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line medium"></div>
+                    <div class="mockup-line small"></div>
+                </div>
+            </div>
+            <div class="template-content">
+                <h2>Executive CV</h2>
+                <p>Premium executive template perfect for senior-level professionals, managers and business roles.</p>
+                <div class="template-features">
+                    <span>Executive</span>
+                    <span>Premium</span>
+                    <span>Business</span>
+                </div>
+                <a href="builder.html?template=executive-cv" class="template-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Use Template
+                </a>
+            </div>
+        </div>
+
+        <div class="template-card slide-up" style="animation-delay:0.5s;">
+            <div class="template-image">
+                <div class="badge badge-hot">HOT</div>
+                <div class="resume-mockup" style="transform:rotate(-4deg);">
+                    <div class="mockup-header" style="background:linear-gradient(90deg,#14b8a6,#3b82f6);"></div>
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line medium"></div>
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line"></div>
+                </div>
+            </div>
+            <div class="template-content">
+                <h2>Developer Stack</h2>
+                <p>Advanced developer resume template for software engineers, coders and tech professionals.</p>
+                <div class="template-features">
+                    <span>Developer</span>
+                    <span>Tech</span>
+                    <span>Modern</span>
+                </div>
+                <a href="builder.html?template=developer-stack" class="template-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Use Template
+                </a>
+            </div>
+        </div>
+
+        <div class="template-card slide-up" style="animation-delay:0.6s;">
+            <div class="template-image">
+                <div class="resume-mockup" style="transform:rotate(2deg);">
+                    <div class="mockup-header" style="background:linear-gradient(90deg,#22c55e,#10b981);"></div>
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line"></div>
+                    <div class="mockup-line small"></div>
+                    <div class="mockup-line medium"></div>
+                </div>
+            </div>
+            <div class="template-content">
+                <h2>Student Resume</h2>
+                <p>Specially designed template for students, freshers and internship applications with clean formatting.</p>
+                <div class="template-features">
+                    <span>Student</span>
+                    <span>Freshers</span>
+                    <span>Internship</span>
+                </div>
+                <a href="builder.html?template=student-resume" class="template-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Use Template
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 ResumeMind AI. All rights reserved.</p>
+
+    <div class="footer-social">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+    </div>
+</footer>
+
+<script src="app.js"></script>
+<div class="background">
+
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    <div class="glow glow3"></div>
+
+    <div class="particles">
+        <span style="left:10%; animation-duration:10s;"></span>
+        <span style="left:25%; animation-duration:15s;"></span>
+        <span style="left:40%; animation-duration:12s;"></span>
+        <span style="left:60%; animation-duration:18s;"></span>
+        <span style="left:75%; animation-duration:14s;"></span>
+        <span style="left:90%; animation-duration:11s;"></span>
+    </div>
+
+</div>
+
+</body>
+</html>

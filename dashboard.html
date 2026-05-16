@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | ResumeMind AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .dashboard-page { padding: 140px 8% 80px; min-height: 100vh; max-width: 1400px; margin: auto; }
+        
+        .dashboard-top { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 50px; }
+        .dashboard-title h1 { font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 10px; }
+        .dashboard-title p { color: var(--text-muted); line-height: 1.8; max-width: 700px; font-size: 1.1rem; }
+        
+        .dashboard-action { display: flex; gap: 15px; flex-wrap: wrap; }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        
+        .stat-card {
+            background: var(--bg-surface); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-lg);
+            padding: 35px; backdrop-filter: blur(16px); transition: var(--transition-bounce); position: relative; overflow: hidden;
+        }
+        .stat-card:hover { transform: translateY(-8px); border-color: rgba(6, 182, 212, 0.4); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+        .stat-card i { font-size: 2.5rem; margin-bottom: 20px; color: var(--accent-cyan); }
+        .stat-card h2 { font-size: 3rem; margin-bottom: 5px; color: var(--text-light); }
+        .stat-card p { color: var(--text-muted); font-weight: 500; }
+
+        .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+        
+        .glass-card {
+            background: var(--bg-surface); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-lg);
+            padding: 35px; backdrop-filter: blur(16px);
+        }
+
+        .section-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .section-title h2 { font-size: 1.5rem; color: var(--accent-cyan); }
+
+        .resume-list { display: flex; flex-direction: column; gap: 20px; }
+        .resume-item {
+            display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
+            padding: 20px; border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05); transition: var(--transition-fast);
+        }
+        .resume-item:hover { transform: translateX(5px); background: rgba(255, 255, 255, 0.06); border-color: var(--accent-blue); }
+        .resume-info { display: flex; align-items: center; gap: 15px; }
+        .resume-icon { width: 55px; height: 55px; border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 24px; background: var(--grad-button); color: white;}
+        .resume-details h3 { margin-bottom: 5px; font-size: 1.1rem; }
+        .resume-details p { color: var(--text-muted); font-size: 0.85rem; }
+        
+        .resume-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .action-btn { padding: 10px 16px; border-radius: 10px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: var(--transition-fast); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; }
+        .action-btn:hover { background: var(--accent-blue); color: white; border-color: transparent; }
+
+        .profile-box { text-align: center; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 30px;}
+        .profile-avatar { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 20px; display: flex; justify-content: center; align-items: center; font-size: 40px; background: var(--grad-button); color: white; box-shadow: 0 10px 20px var(--accent-glow);}
+        .profile-box h2 { margin-bottom: 5px; font-size: 1.3rem; }
+        .profile-box p { color: var(--text-muted); font-size: 0.9rem;}
+
+        .progress-item { margin-bottom: 20px; }
+        .progress-top { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-light); font-weight: 500;}
+        .progress-bar { width: 100%; height: 8px; border-radius: 20px; background: rgba(255,255,255,0.1); overflow: hidden; }
+        .progress-bar span { display: block; height: 100%; border-radius: 20px; background: var(--grad-button); }
+
+        .ai-box { margin-top: 30px; padding: 25px; border-radius: var(--radius-md); background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.3); }
+        .ai-box h3 { margin-bottom: 10px; color: var(--accent-purple); font-size: 1.1rem;}
+        .ai-box p { color: var(--text-muted); line-height: 1.7; font-size: 0.9rem; }
+
+        @media(max-width: 992px) { .main-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+
+<body>
+    <div class="background">
+        <div class="glow glow1"></div><div class="glow glow2"></div><div class="glow glow3"></div>
+    </div>
+
+    <header id="navbar">
+        <div class="navbar">
+            <div class="logo"><i class="fa-solid fa-layer-group" style="color: var(--accent-cyan);"></i> <span>ResumeMind AI</span></div>
+            <div class="mobile-menu"><i class="fa-solid fa-bars"></i></div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="builder.html">Builder</a>
+                <a href="templates.html">Templates</a>
+                
+                <a href="dashboard.html" style="color: white; font-weight: 600;">Dashboard</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="dashboard-page">
+        <div class="dashboard-top fade-in">
+            <div class="dashboard-title">
+                <h1>AI <span class="gradient-text">Dashboard</span></h1>
+                <p>Manage your resumes, AI career suggestions, ATS scores, and premium templates from one futuristic hub.</p>
+            </div>
+            <div class="dashboard-action">
+                <a href="builder.html" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create New</a>
+                <a href="templates.html" class="btn btn-secondary"><i class="fa-solid fa-layer-group"></i> Templates</a>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card slide-up" style="animation-delay: 0.1s;">
+                <i class="fa-solid fa-file-lines"></i>
+                <h2 class="counter" data-target="24">0</h2>
+                <p>Generated Resumes</p>
+            </div>
+            <div class="stat-card slide-up" style="animation-delay: 0.2s;">
+                <i class="fa-solid fa-chart-line"></i>
+                <h2 class="counter" data-target="92">0</h2>
+                <p>Avg. ATS Score</p>
+            </div>
+            <div class="stat-card slide-up" style="animation-delay: 0.3s;">
+                <i class="fa-solid fa-eye"></i>
+                <h2 class="counter" data-target="180">0</h2>
+                <p>Resume Views</p>
+            </div>
+            <div class="stat-card slide-up" style="animation-delay: 0.4s;">
+                <i class="fa-solid fa-briefcase"></i>
+                <h2 class="counter" data-target="12">0</h2>
+                <p>Job Applications</p>
+            </div>
+        </div>
+
+        <div class="main-grid">
+            <div class="glass-card slide-right">
+                <div class="section-title">
+                    <h2><i class="fa-solid fa-folder-open"></i> Recent Resumes</h2>
+                    <a href="#" style="color: var(--text-muted); font-size: 0.9rem;">View All <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="resume-list">
+                    <div class="resume-item">
+                        <div class="resume-info">
+                            <div class="resume-icon"><i class="fa-solid fa-code"></i></div>
+                            <div class="resume-details">
+                                <h3>Frontend Developer Resume</h3>
+                                <p>Updated 2 hours ago • ATS Score: 92%</p>
+                            </div>
+                        </div>
+                        <div class="resume-actions">
+                            <a href="#" class="action-btn"><i class="fa-solid fa-pen"></i> Edit</a>
+                            <a href="#" class="action-btn"><i class="fa-solid fa-download"></i> PDF</a>
+                        </div>
+                    </div>
+
+                    <div class="resume-item">
+                        <div class="resume-info">
+                            <div class="resume-icon" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);"><i class="fa-solid fa-palette"></i></div>
+                            <div class="resume-details">
+                                <h3>UI/UX Designer Portfolio</h3>
+                                <p>Updated yesterday • ATS Score: 88%</p>
+                            </div>
+                        </div>
+                        <div class="resume-actions">
+                            <a href="#" class="action-btn"><i class="fa-solid fa-pen"></i> Edit</a>
+                            <a href="#" class="action-btn"><i class="fa-solid fa-download"></i> PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-box">
+                    <h3><i class="fa-solid fa-robot"></i> AI Career Suggestions</h3>
+                    <p>Based on your recent Frontend Developer resume, consider adding <strong>TypeScript</strong> and <strong>Jest Testing</strong> to your skills. Jobs matching your profile have increased by 15% this week.</p>
+                </div>
+            </div>
+
+            <div class="glass-card slide-up" style="animation-delay: 0.2s;">
+                <div class="profile-box">
+                    <div class="profile-avatar"><i class="fa-solid fa-user"></i></div>
+                    <h2>John Doe</h2>
+                    <p>Frontend Developer</p>
+                </div>
+
+                <div class="progress-box">
+                    <div class="progress-item">
+                        <div class="progress-top"><p>Profile Completion</p><p>88%</p></div>
+                        <div class="progress-bar"><span style="width:88%"></span></div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-top"><p>Average ATS Score</p><p>92%</p></div>
+                        <div class="progress-bar"><span style="width:92%; background: linear-gradient(90deg, #10b981, #059669);"></span></div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-top"><p>Skills Match</p><p>84%</p></div>
+                        <div class="progress-bar"><span style="width:84%; background: linear-gradient(90deg, #f59e0b, #ea580c);"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 ResumeMind AI. All rights reserved.</p>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        // Sticky Header Script
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('navbar');
+            if (window.scrollY > 20) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+    </script>
+    <div class="background">
+
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    <div class="glow glow3"></div>
+
+    <div class="particles">
+        <span style="left:10%; animation-duration:10s;"></span>
+        <span style="left:25%; animation-duration:15s;"></span>
+        <span style="left:40%; animation-duration:12s;"></span>
+        <span style="left:60%; animation-duration:18s;"></span>
+        <span style="left:75%; animation-duration:14s;"></span>
+        <span style="left:90%; animation-duration:11s;"></span>
+    </div>
+
+</div>
+</body>
+</html>
